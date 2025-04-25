@@ -1,0 +1,297 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int choix, a, b ,c ,resultat , reponse, ouinon, occ, occ1, point=0, jouer=1,essai, n;
+char nom[50];
+
+    int est_premier(int n) {
+    if (n < 2) return 0;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return 0;
+    }
+    return 1;
+}
+    void enregistrer_score() {
+        jouer=0;
+        FILE *fichier = fopen("scores.txt", "a");
+        if (fichier == NULL) {
+            printf("Erreur d'ouverture du fichier !\n");
+            return;
+        }
+    
+        time_t t;
+        time(&t);
+        
+        fprintf(fichier, "Nom: %s | Date et Heure: %s | Score: %d\n", nom, ctime(&t), point);
+        fclose(fichier);
+        
+    }
+    void ajouter_point(n){
+        point=point+n;
+    }
+
+    void Addition(){    
+        occ=0;
+        essai=0;
+        a = rand() % 101;
+        b = rand() % 101;
+        reponse = a+b;
+        printf("%d+%d= ?\n",a,b);
+        printf("Entrez le resultat\n");
+        scanf("%d", &resultat);
+        printf("Vous avez entré %d\n",resultat);
+        while (occ<2){
+        if (resultat == reponse){
+            printf("Bravo !\n");
+            if (occ==0){
+                ajouter_point(10);
+            }
+            if (occ==1){
+                ajouter_point(5);
+            }
+            if (occ==2){
+                ajouter_point(1);
+            }
+            break;
+        
+        if(occ==3){
+            printf("dommage");
+        }
+            
+        }
+        occ=occ+1;
+        printf("essai n°%d\n",occ+1);
+        printf("Entrez le resultat\n");
+        scanf("%d", &resultat);
+        printf("Vous avez entré %d\n",resultat);
+        
+       
+    } 
+    }
+    
+    void Soustraction(){    
+    occ=0;
+    essai=0;
+        a = rand() % 101;
+        b = rand() % 101;
+        if (a<b){
+            c=a;
+            a=b;
+            b=c;
+            
+        }
+        reponse = a-b;
+        printf("%d-%d= ?\n",a,b);
+        printf("Entrez le resultat\n");
+        scanf("%d", &resultat);
+        printf("Vous avez entré %d\n",resultat);
+        while (occ<2){
+        if (resultat == reponse){
+            
+        
+            printf("Bravo !\n");
+            if (occ==0){
+                ajouter_point(10);
+            }
+            if (occ==1){
+                ajouter_point(5);
+            }
+            if (occ==2){
+                ajouter_point(1);
+            }
+            break;
+        
+        if(occ==3){
+            printf("dommage");
+        }
+            
+        }    
+       occ=occ+1;
+        printf("essai n°%d\n",occ+1);
+        printf("Entrez le resultat\n");
+        scanf("%d", &resultat);
+        printf("Vous avez entré %d\n",resultat);
+    }
+    
+        
+        }
+        
+    
+     
+    
+    void Multiplication(){    
+        occ=0;
+        essai=0;
+        a = rand() % 11;
+        b = rand() % 11;
+        reponse = a*b;
+        printf("%d*%d= ?\n",a,b);
+        printf("Entrez le resultat\n");
+        scanf("%d", &resultat);
+        printf("Vous avez entré %d\n",resultat);
+        while (occ<2){
+        if (resultat == reponse){
+            printf("Bravo !\n");
+            if (occ==0){
+                ajouter_point(10);
+            }
+            if (occ==1){
+                ajouter_point(5);
+            }
+            if (occ==2){
+                ajouter_point(1);
+            }
+            break;
+        
+        if(occ==3){
+            printf("dommage");
+        }
+            
+        }
+        occ=occ+1;
+        printf("essai n°%d\n",occ+1);
+        printf("Entrez le resultat\n");
+        scanf("%d", &resultat);
+        printf("Vous avez entré %d\n",resultat);
+   
+        
+    }
+    }
+    
+    void Tables_De_Multiplications() {
+        essai=0;
+        occ1=0;
+        printf("Quelle table voulez vous ?\n");
+        scanf ("%d",&a);
+        for (int i=0;i<=10;i++){
+            printf("%d*%d=%d\n",a,i,a*i);
+        }
+        printf("voulez vous vous exercer ?0 -> Non/1 -> Oui");
+        scanf("%d",&ouinon);
+        if (ouinon == 1){
+            for (int j =0;j<=20;j++){
+                printf("                                \n");
+            }
+        while(essai<=2){
+            occ=0;
+            for(int i =0;i<=10;i++){
+                printf("%d*%d=",a,i);
+                scanf("%d",&reponse);
+                if (reponse == a*i){
+                    occ=occ+1;
+                }
+                
+        
+                
+            }
+            if(occ!=11){
+                    essai=essai+1;
+                    printf("dommage,réesssayez\nessai n°%d\n",essai+1);
+                    occ1=occ1+1;
+                }
+            if(occ==11){
+                printf("bravo\n");
+                essai=3;
+                if (occ1==0){
+                ajouter_point(10);
+            }
+            if (occ1==1){
+                ajouter_point(5);
+            }
+            if (occ1==2){
+                ajouter_point(1);
+            }
+                }
+        }
+        }
+    }
+        
+
+    
+    void Divisions() {
+    int a, b, reponse, resultat, occ = 0;
+
+    srand(time(NULL)); 
+
+    
+    do {
+        a = rand() % 101; 
+    } while (est_premier(a)); 
+
+   
+    do {
+        b = rand() % 11;
+    } while (b == 0 || a % b != 0); 
+
+    reponse = a / b;
+
+    printf("%d / %d = ?\n", a, b);
+    
+    while (occ < 3) { 
+        printf("Entrez le résultat : ");
+        scanf("%d", &resultat);
+        printf("Vous avez entré : %d\n", resultat);
+
+        if (resultat == reponse) {
+            printf("Bravo !\n");
+
+            
+            if (occ == 0) {
+                ajouter_point(10);
+            } else if (occ == 1) {
+                ajouter_point(5);
+            } else {
+                ajouter_point(1);
+            }
+
+            return; 
+        }
+
+        occ++;
+        if (occ < 3) {
+            printf("Dommage, réessayez ! Essai n°%d\n", occ + 1);
+        } else {
+            printf("Dommage, la bonne réponse était %d.\n", reponse);
+        }
+    }
+}
+
+
+int main() {
+    
+    printf("entrez votre prénom svp :\n");
+    scanf("%s",nom);
+    point=0;
+    srand(time(NULL));
+
+    while(jouer==1){
+    printf("+-----------------------------------+\n");
+    printf("|1 : Addition                       |\n");
+    printf("|2 : Soustraction                   |\n");
+    printf("|3 : Multiplication                 |\n");
+    printf("|4 : Tables des multiplications     |\n");
+    printf("|5 : Divisions                      |\n");
+    printf("|6 : Enregistrer score              |\n");
+    printf("|0 : Sortir du jeu                  |\n");
+    printf("+-----------------------------------+\n");
+    printf("Vous avez %d points\n",point);
+    printf("Quel est votre choix ?\n");
+
+    scanf("%d", &choix);
+
+
+
+    
+   switch(choix){
+    case 1 : printf("Addition\n");Addition(); break;
+    case 2 : printf("Soustraction\n");Soustraction(); break;
+    case 3 : printf("Multiplication\n");Multiplication(); break;
+    case 4 : printf("Tables des multiplications\n");Tables_De_Multiplications(); break;
+    case 5 : printf("Divisions\n");Divisions(); break;
+    case 6 : printf("Enregistrer score\n"); enregistrer_score();break;
+    case 0 : printf("Merci de votre visite\n");jouer=0; break;
+    default : printf("erreur : le choix doit etre compris entre 0 et 6\n");
+   }
+    }
+return 0;
+}
